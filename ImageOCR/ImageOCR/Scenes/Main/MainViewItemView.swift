@@ -14,7 +14,7 @@ struct MainViewItemView: View {
                 .frame(width: 50, height: 50)
                 .border(.gray, width: 1)
 
-            Text(item.name ?? "No title")
+            Text(item.name ?? Strings.MainView.noImageNameText)
                 .fontWeight(.light)
 
             Spacer()
@@ -26,7 +26,7 @@ struct MainViewItemView_Previews: PreviewProvider {
     private static let ocrImage: OcrImage = {
         let image = UIImage(named: "test_image_1") ?? UIImage()
         var ocrImage = OcrImage(with: image)
-        ocrImage.name = "test image 1"
+        ocrImage.name = "Test Image 1"
         return ocrImage
     }()
 

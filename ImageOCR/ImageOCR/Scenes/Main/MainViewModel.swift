@@ -5,6 +5,7 @@ import PhotosUI
 import SwiftUI
 
 class MainViewModel: ObservableObject {
+    let screenTitle = Strings.MainView.title
     @Published var images: [OcrImage] = []
 
     // MARK: - Photos Picker methods -

@@ -9,11 +9,17 @@ struct MainView: View {
 
     var body: some View {
         NavigationStack {
-            List(viewModel.images) { item in
-                MainViewItemView(item: item)
+            Group {
+                if viewModel.images.isEmpty {
+                    Text(Strings.MainView.noImagesText)
+                        .font(.system(size: 28, weight: .thin))
+                } else {
+                    List(viewModel.images) { item in
+                        MainViewItemView(item: item)
+                    }
+                }
             }
-
-            .navigationTitle("Images")
+            .navigationTitle(viewModel.screenTitle)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     PhotosPicker(
