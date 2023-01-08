@@ -34,4 +34,20 @@ class MainViewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
+
+    // MARK: - Camera Picker methods -
+
+    @Published var isCameraPickerPresented = false
+    @Published var selectedPhoto: UIImage? {
+        didSet {
+            if let selectedPhoto {
+                addPhoto(selectedPhoto)
+            }
+        }
+    }
+
+    private func addPhoto(_ photo: UIImage) {
+        let ocrImage = OcrImage(with: photo)
+        images.append(ocrImage)
+    }
 }

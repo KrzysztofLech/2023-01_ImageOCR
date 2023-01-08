@@ -31,7 +31,25 @@ struct MainView: View {
                         }
                     )
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(
+                        action: {
+                            viewModel.isCameraPickerPresented = true
+                        },
+                        label: {
+                            Image(systemName: "camera.fill")
+                                .imageScale(.large)
+                        }
+                    )
+                }
             }
+            .fullScreenCover(
+                isPresented: $viewModel.isCameraPickerPresented,
+                content: {
+                    CameraPicker(photo: $viewModel.selectedPhoto)
+                        .ignoresSafeArea()
+                }
+            )
         }
     }
 }
