@@ -15,7 +15,7 @@ struct MainView: View {
                         .font(.system(size: 28, weight: .thin))
                 } else {
                     List(viewModel.images) { item in
-                        MainViewItemView(item: item)
+                        listItemView(item: item)
                     }
                 }
             }
@@ -46,16 +46,32 @@ struct MainView: View {
             .fullScreenCover(
                 isPresented: $viewModel.isCameraPickerPresented,
                 content: {
-                    CameraPicker(photo: $viewModel.selectedPhoto)
+                    CameraPicker(photo: $viewModel.cameraPickerSelectedPhoto)
                         .ignoresSafeArea()
                 }
             )
+        }
+    }
+
+    @ViewBuilder
+    private func listItemView(item: CDImageViewModel) -> some View {
+        HStack(alignment: .center, spacing: 16) {
+            Image(uiImage: item.image)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50, height: 50)
+                .border(.gray, width: 1)
+
+            Text(item.name)
+                .fontWeight(.light)
+
+            Spacer()
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(viewModel: MainViewModel())
+        MainView(viewModel: MainViewModel(dataService: nil))
     }
 }

@@ -5,9 +5,11 @@ import SwiftUI
 
 @main
 struct ImageOCRApp: App {
+    private let dataService: ImageDataServiceProtocol = DataService()
+
     var body: some Scene {
         WindowGroup {
-            MainView(viewModel: MainViewModel())
+            MainView(viewModel: MainViewModel(dataService: dataService))
         }
     }
 }
