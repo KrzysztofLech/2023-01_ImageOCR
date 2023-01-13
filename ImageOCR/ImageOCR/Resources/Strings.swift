@@ -6,7 +6,8 @@ import Foundation
 enum Strings {
     enum MainView {
         static let title = "Images"
-        static let noImageNameText = "No title"
         static let noImagesText = "Add first image"
+        static let noImageNameText = "No title"
+        static let noRecognizedText = "No recognised text"
     }
 }

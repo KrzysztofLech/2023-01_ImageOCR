@@ -15,7 +15,12 @@ struct MainView: View {
                         .font(.system(size: 28, weight: .thin))
                 } else {
                     List(viewModel.images) { item in
-                        listItemView(item: item)
+                        NavigationLink(
+                            destination: Image(uiImage: item.image),
+                            label: {
+                                listItemView(item: item)
+                            }
+                        )
                     }
                 }
             }
@@ -62,8 +67,12 @@ struct MainView: View {
                 .frame(width: 50, height: 50)
                 .border(.gray, width: 1)
 
-            Text(item.name)
-                .fontWeight(.light)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(item.name)
+                    .fontWeight(.bold)
+                Text(item.text)
+                    .fontWeight(.light)
+            }
 
             Spacer()
         }

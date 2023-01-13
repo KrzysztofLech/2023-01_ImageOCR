@@ -26,4 +26,13 @@ struct CDImageViewModel: Identifiable {
     var createdAt: Date {
         cdImage.createdAt ?? Date()
     }
+
+    var text: String {
+        get {
+            cdImage.text ?? Strings.MainView.noRecognizedText
+        }
+        set {
+            cdImage.text = newValue
+        }
+    }
 }
