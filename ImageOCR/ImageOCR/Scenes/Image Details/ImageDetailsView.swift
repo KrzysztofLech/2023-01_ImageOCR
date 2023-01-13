@@ -17,15 +17,37 @@ struct ImageDetailsView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
+            // Image
             Image(uiImage: item.image)
                 .resizable()
                 .scaledToFit()
                 .padding(.horizontal, 64)
 
-            TextField("", text: $name)
-                .font(.system(size: 28, weight: .thin))
-                .multilineTextAlignment(.center)
-                .focused($isTextFieldFocused)
+            Group {
+                // Image name
+                TextField("", text: $name)
+                    .font(.system(size: 28, weight: .thin))
+                    .multilineTextAlignment(.center)
+                    .focused($isTextFieldFocused)
+
+                if item.text.isEmpty {
+                    // Recognise button
+                    Button(
+                        action: {
+                            viewModel.recogniseTextFromImage(withId: item.id)
+                        },
+                        label: {
+                            Text(Strings.DetailsView.recogniseButtonTitle)
+                                .padding(8)
+                        }
+                    ).buttonStyle(.borderedProminent)
+                } else {
+                    // Recognised text
+                    Text(item.text)
+                        .font(.system(size: 18, weight: .regular))
+                        .lineLimit(0)
+                }
+            }.padding(.horizontal, 32)
 
             Spacer()
         }

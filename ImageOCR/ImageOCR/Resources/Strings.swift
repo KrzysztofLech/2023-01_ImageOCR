@@ -8,6 +8,10 @@ enum Strings {
         static let title = "Images"
         static let noImagesText = "Add first image"
         static let noImageNameText = "No title"
-        static let noRecognizedText = "No recognised text"
+        static let noRecognisedText = "No recognised text"
+    }
+
+    enum DetailsView {
+        static let recogniseButtonTitle = "Recognise text"
     }
 }

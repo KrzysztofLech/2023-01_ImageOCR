@@ -34,7 +34,7 @@ class CDImageViewModel: Identifiable {
 
     var text: String {
         get {
-            cdImage.text ?? Strings.MainView.noRecognizedText
+            cdImage.text ?? ""
         }
         set {
             cdImage.text = newValue

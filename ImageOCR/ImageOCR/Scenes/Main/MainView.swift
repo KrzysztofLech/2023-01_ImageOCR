@@ -70,7 +70,7 @@ struct MainView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.name)
                     .fontWeight(.bold)
-                Text(item.text)
+                Text(item.text.isEmpty ? Strings.MainView.noRecognisedText : item.text)
                     .fontWeight(.light)
             }
 

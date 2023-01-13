@@ -17,6 +17,28 @@ class MainViewModel: ObservableObject {
     let screenTitle = Strings.MainView.title
     @Published var images: [CDImageViewModel] = []
 
+    // MARK: - Data methods -
+
+    private func createNewImage(with data: Data) {
+        guard let image = dataService?.createImage(name: "No title", imageData: data) else { return }
+        let imageViewModel = CDImageViewModel(cdImage: image)
+        images.append(imageViewModel)
+    }
+
+    internal func setupNewName(_ name: String, itemId: String) {
+        images.first(where: { $0.id == itemId })?.name = name
+
+        objectWillChange.send()
+        dataService?.saveChanges()
+    }
+
+    private func setupRecognisedText(_ text: String, itemId: String) {
+        images.first(where: { $0.id == itemId })?.text = text
+
+        objectWillChange.send()
+        dataService?.saveChanges()
+    }
+
     // MARK: - Photos Picker methods -
 
     @Published var imageSelection: PhotosPickerItem? {
@@ -52,18 +74,10 @@ class MainViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Data methods -
+    // MARK: - OCR methods -
 
-    private func createNewImage(with data: Data) {
-        guard let image = dataService?.createImage(name: "No title", imageData: data) else { return }
-        let imageViewModel = CDImageViewModel(cdImage: image)
-        images.append(imageViewModel)
-    }
-
-    internal func setupNewName(_ name: String, itemId: String) {
-        images.first(where: { $0.id == itemId })?.name = name
-
-        objectWillChange.send()
-        dataService?.saveChanges()
+    func recogniseTextFromImage(withId id: String) {
+        let recognisedText = "ABCD efgh 😀"
+        setupRecognisedText(recognisedText, itemId: id)
     }
 }
