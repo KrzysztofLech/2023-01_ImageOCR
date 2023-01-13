@@ -34,6 +34,7 @@ extension DataService: DataServiceProtocol {
 
         do {
             try context.save()
+            print("CoreDataService: Context saved!")
         } catch {
             print("Could not save! Error: \(error)")
         }

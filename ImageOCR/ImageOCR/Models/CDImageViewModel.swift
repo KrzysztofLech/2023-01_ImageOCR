@@ -3,8 +3,8 @@
 
 import UIKit
 
-struct CDImageViewModel: Identifiable {
-    let cdImage: CDImage
+class CDImageViewModel: Identifiable {
+    private let cdImage: CDImage
 
     init(cdImage: CDImage) {
         self.cdImage = cdImage
@@ -15,7 +15,12 @@ struct CDImageViewModel: Identifiable {
     }
 
     var name: String {
-        cdImage.name ?? Strings.MainView.noImageNameText
+        get {
+            cdImage.name ?? Strings.MainView.noImageNameText
+        }
+        set {
+            cdImage.name = newValue
+        }
     }
 
     var image: UIImage {

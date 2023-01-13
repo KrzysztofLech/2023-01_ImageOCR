@@ -8,13 +8,14 @@ protocol ImageDataServiceProtocol {
     func createImage(name: String?, imageData: Data) -> CDImage
     func deleteImage(_ image: CDImage)
     func deleteAllImages()
+    func saveChanges()
 }
 
 extension DataService: ImageDataServiceProtocol {
     var images: [CDImage] {
         let sortDescriptor = NSSortDescriptor(key: "createdAt", ascending: true)
         let images: [CDImage] = fetch(sortDescriptors: [sortDescriptor])
-        print("Images: ", images.count)
+        print("CoreDataService: All images:", images.count)
         return images
     }
 
@@ -26,18 +27,22 @@ extension DataService: ImageDataServiceProtocol {
         image.createdAt = Date()
 
         saveContext()
-        print("Image added!")
+        print("CoreDataService: Image added!")
 
         return image
     }
 
     func deleteImage(_ image: CDImage) {
         delete(image)
-        print("Image deleted!")
+        print("CoreDataService: Image deleted!")
     }
 
     func deleteAllImages() {
         images.forEach { delete($0) }
-        print("All images deleted!")
+        print("CoreDataService: All images deleted!")
+    }
+
+    func saveChanges() {
+        saveContext()
     }
 }

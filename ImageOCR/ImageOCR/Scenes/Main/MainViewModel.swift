@@ -59,4 +59,11 @@ class MainViewModel: ObservableObject {
         let imageViewModel = CDImageViewModel(cdImage: image)
         images.append(imageViewModel)
     }
+
+    internal func setupNewName(_ name: String, itemId: String) {
+        images.first(where: { $0.id == itemId })?.name = name
+
+        objectWillChange.send()
+        dataService?.saveChanges()
+    }
 }

@@ -9,7 +9,9 @@ struct ImageOCRApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView(viewModel: MainViewModel(dataService: dataService))
+            let mainViewModel = MainViewModel(dataService: dataService)
+            MainView()
+                .environmentObject(mainViewModel)
         }
     }
 }

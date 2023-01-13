@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B64E1312971A1E80024A9CB /* ImageDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B64E1302971A1E80024A9CB /* ImageDetailsView.swift */; };
 		6BBD7F18296F26D3005E4F1F /* ImagesDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6BBD7F16296F26D3005E4F1F /* ImagesDataModel.xcdatamodeld */; };
 		6BBD7F1E296F3793005E4F1F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBD7F1D296F3793005E4F1F /* DataService.swift */; };
 		6BBD7F20296F426E005E4F1F /* DataService+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBD7F1F296F426E005E4F1F /* DataService+extensions.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B64E1302971A1E80024A9CB /* ImageDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailsView.swift; sourceTree = "<group>"; };
 		6BBD7F17296F26D3005E4F1F /* ImagesDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImagesDataModel.xcdatamodel; sourceTree = "<group>"; };
 		6BBD7F1D296F3793005E4F1F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		6BBD7F1F296F426E005E4F1F /* DataService+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataService+extensions.swift"; sourceTree = "<group>"; };
@@ -46,6 +48,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B64E12F2971A1900024A9CB /* Image Details */ = {
+			isa = PBXGroup;
+			children = (
+				6B64E1302971A1E80024A9CB /* ImageDetailsView.swift */,
+			);
+			path = "Image Details";
+			sourceTree = "<group>";
+		};
 		6BBD7F21296F44FA005E4F1F /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				6BE14673296990A3001F65AA /* Main */,
+				6B64E12F2971A1900024A9CB /* Image Details */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -209,6 +220,7 @@
 				6BBD7F20296F426E005E4F1F /* DataService+extensions.swift in Sources */,
 				6BE14664296893B1001F65AA /* MainView.swift in Sources */,
 				6BE146782969989A001F65AA /* CDImageViewModel.swift in Sources */,
+				6B64E1312971A1E80024A9CB /* ImageDetailsView.swift in Sources */,
 				6BE1467E296AA185001F65AA /* CameraPicker.swift in Sources */,
 				6BE14662296893B1001F65AA /* ImageOCRApp.swift in Sources */,
 				6BBD7F18296F26D3005E4F1F /* ImagesDataModel.xcdatamodeld in Sources */,

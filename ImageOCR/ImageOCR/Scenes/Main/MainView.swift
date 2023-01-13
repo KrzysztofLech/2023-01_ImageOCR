@@ -5,7 +5,7 @@ import PhotosUI
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var viewModel: MainViewModel
+    @EnvironmentObject var viewModel: MainViewModel
 
     var body: some View {
         NavigationStack {
@@ -16,7 +16,7 @@ struct MainView: View {
                 } else {
                     List(viewModel.images) { item in
                         NavigationLink(
-                            destination: Image(uiImage: item.image),
+                            destination: ImageDetailsView(image: item),
                             label: {
                                 listItemView(item: item)
                             }
@@ -80,7 +80,9 @@ struct MainView: View {
 }
 
 struct MainView_Previews: PreviewProvider {
+    @State private static var viewModel = MainViewModel(dataService: DataService())
     static var previews: some View {
-        MainView(viewModel: MainViewModel(dataService: nil))
+        MainView()
+            .environmentObject(viewModel)
     }
 }
