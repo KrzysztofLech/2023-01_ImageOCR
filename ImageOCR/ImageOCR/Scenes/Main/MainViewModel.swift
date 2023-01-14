@@ -81,11 +81,17 @@ class MainViewModel: ObservableObject {
 
     // MARK: - OCR methods -
 
+    @Published var isRecognising = false
+
     func recogniseTextFromImage(withId id: String) {
+        isRecognising = true
+        
         guard let image = images.first(where: { $0.id == id })?.image else { return }
 
         TextRecognitionService.recogniseTextFromImage(image) { [weak self] recognisedText in
             DispatchQueue.main.async {
+                self?.isRecognising = false
+
                 if let recognisedText, !recognisedText.isEmpty {
                     print("Recognised text:", recognisedText)
                     self?.saveRecognisedText(recognisedText, itemId: id)

@@ -37,10 +37,18 @@ struct ImageDetailsView: View {
                             viewModel.recogniseTextFromImage(withId: item.id)
                         },
                         label: {
-                            Text(Strings.DetailsView.recogniseButtonTitle)
-                                .padding(8)
+                            ZStack {
+                                if viewModel.isRecognising {
+                                    ProgressView().tint(.blue)
+                                }
+                                Text(Strings.DetailsView.recogniseButtonTitle)
+                                    .padding(8)
+                                    .foregroundColor(viewModel.isRecognising ? .clear : .white)
+                            }
                         }
-                    ).buttonStyle(.borderedProminent)
+                    )
+                    .buttonStyle(.borderedProminent)
+                    .disabled(viewModel.isRecognising)
                 } else {
                     // Recognised text
                     VStack(alignment: .leading, spacing: 8) {
