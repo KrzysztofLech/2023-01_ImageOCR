@@ -19,6 +19,7 @@ struct MainViewListItemView: View {
                     .fontWeight(.bold)
                 Text(item.text.isEmpty ? Strings.MainView.noRecognisedText : item.text)
                     .fontWeight(.light)
+                    .lineLimit(1)
             }
 
             Spacer()

@@ -13,5 +13,6 @@ enum Strings {
 
     enum DetailsView {
         static let recogniseButtonTitle = "Recognise text"
+        static let recognisedTextTitle = "Recognised text:"
     }
 }

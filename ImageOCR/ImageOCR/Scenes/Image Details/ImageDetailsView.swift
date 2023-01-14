@@ -43,15 +43,26 @@ struct ImageDetailsView: View {
                     ).buttonStyle(.borderedProminent)
                 } else {
                     // Recognised text
-                    Text(item.text)
-                        .font(.system(size: 18, weight: .regular))
-                        .lineLimit(0)
-                        .multilineTextAlignment(.leading)
-                        .padding(8)
-                        .border(Color.gray, width: 1)
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text(Strings.DetailsView.recognisedTextTitle)
+                                .font(.system(size: 12))
+                            Spacer()
+                        }
 
+                        HStack {
+                            Text(item.text)
+                                .font(.system(size: 18, weight: .regular))
+                                .padding(8)
+                            Spacer(minLength: 0)
+                        }
+                        .background {
+                            RoundedRectangle(cornerRadius: 4).stroke(.gray, lineWidth: 1)
+                        }
+                    }
                 }
-            }.padding(.horizontal, 32)
+            }
+            .padding(.horizontal, 32)
 
             Spacer()
         }
