@@ -44,6 +44,12 @@ class MainViewModel: ObservableObject {
         images.removeAll(where: { $0.id == item.id })
     }
 
+    func removeRecognisedText(_ item: CDImageViewModel) {
+        item.text = ""
+        objectWillChange.send()
+        dataService?.saveChanges()
+    }
+
     // MARK: - Photos Picker methods -
 
     @Published var imageSelection: PhotosPickerItem? {
@@ -85,7 +91,7 @@ class MainViewModel: ObservableObject {
 
     func recogniseTextFromImage(withId id: String) {
         isRecognising = true
-        
+
         guard let image = images.first(where: { $0.id == id })?.image else { return }
 
         TextRecognitionService.recogniseTextFromImage(image) { [weak self] recognisedText in

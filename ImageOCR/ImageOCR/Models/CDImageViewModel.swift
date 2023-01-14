@@ -37,7 +37,11 @@ class CDImageViewModel: Identifiable {
             cdImage.text ?? ""
         }
         set {
-            cdImage.text = newValue
+            if newValue.isEmpty {
+                cdImage.text = nil
+            } else {
+                cdImage.text = newValue
+            }
         }
     }
 }
