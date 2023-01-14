@@ -39,6 +39,11 @@ class MainViewModel: ObservableObject {
         dataService?.saveChanges()
     }
 
+    func delete(_ item: CDImageViewModel) {
+        dataService?.deleteImage(item.cdImage)
+        images.removeAll(where: { $0.id == item.id })
+    }
+
     // MARK: - Photos Picker methods -
 
     @Published var imageSelection: PhotosPickerItem? {

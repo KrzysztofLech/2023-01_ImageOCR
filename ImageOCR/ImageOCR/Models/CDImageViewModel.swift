@@ -4,7 +4,7 @@
 import UIKit
 
 class CDImageViewModel: Identifiable {
-    private let cdImage: CDImage
+    let cdImage: CDImage
 
     init(cdImage: CDImage) {
         self.cdImage = cdImage

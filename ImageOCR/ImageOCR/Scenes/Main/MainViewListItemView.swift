@@ -4,6 +4,7 @@
 import SwiftUI
 
 struct MainViewListItemView: View {
+    @EnvironmentObject var viewModel: MainViewModel
     let item: CDImageViewModel
 
     var body: some View {
@@ -24,11 +25,24 @@ struct MainViewListItemView: View {
 
             Spacer()
         }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button(
+                role: .destructive,
+                action: {
+                    viewModel.delete(item)
+                },
+                label: {
+                    Image(systemName: "trash")
+                }
+            )
+        }
     }
 }
 
 struct MainViewListItemView_Previews: PreviewProvider {
+    @State private static var viewModel = MainViewModel(dataService: DataService.preview)
     static var previews: some View {
         MainViewListItemView(item: DataService.previewItem)
+            .environmentObject(viewModel)
     }
 }
