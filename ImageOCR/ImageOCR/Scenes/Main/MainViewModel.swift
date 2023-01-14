@@ -25,14 +25,14 @@ class MainViewModel: ObservableObject {
         images.append(imageViewModel)
     }
 
-    internal func setupNewName(_ name: String, itemId: String) {
+    internal func saveNewName(_ name: String, itemId: String) {
         images.first(where: { $0.id == itemId })?.name = name
 
         objectWillChange.send()
         dataService?.saveChanges()
     }
 
-    private func setupRecognisedText(_ text: String, itemId: String) {
+    private func saveRecognisedText(_ text: String, itemId: String) {
         images.first(where: { $0.id == itemId })?.text = text
 
         objectWillChange.send()
@@ -77,7 +77,17 @@ class MainViewModel: ObservableObject {
     // MARK: - OCR methods -
 
     func recogniseTextFromImage(withId id: String) {
-        let recognisedText = "ABCD efgh 😀"
-        setupRecognisedText(recognisedText, itemId: id)
+        guard let image = images.first(where: { $0.id == id })?.image else { return }
+
+        TextRecognitionService.recogniseTextFromImage(image) { [weak self] recognisedText in
+            DispatchQueue.main.async {
+                if let recognisedText, !recognisedText.isEmpty {
+                    print("Recognised text:", recognisedText)
+                    self?.saveRecognisedText(recognisedText, itemId: id)
+                } else {
+                    print("No recognised text!")
+                }
+            }
+        }
     }
 }

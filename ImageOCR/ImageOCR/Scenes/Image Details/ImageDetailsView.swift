@@ -68,7 +68,7 @@ struct ImageDetailsView: View {
         }
         .onChange(of: isTextFieldFocused) { isFocused in
             guard !isFocused else { return }
-            viewModel.setupNewName(name, itemId: item.id)
+            viewModel.saveNewName(name, itemId: item.id)
         }
     }
 }

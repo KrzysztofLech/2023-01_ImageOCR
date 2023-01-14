@@ -20,6 +20,7 @@
 		6BE146782969989A001F65AA /* CDImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE146772969989A001F65AA /* CDImageViewModel.swift */; };
 		6BE1467C2969A312001F65AA /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1467B2969A312001F65AA /* Strings.swift */; };
 		6BE1467E296AA185001F65AA /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1467D296AA185001F65AA /* CameraPicker.swift */; };
+		6BE2D7D82972E80F00CE3866 /* TextRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2D7D72972E80F00CE3866 /* TextRecognitionService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		6BE146772969989A001F65AA /* CDImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDImageViewModel.swift; sourceTree = "<group>"; };
 		6BE1467B2969A312001F65AA /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		6BE1467D296AA185001F65AA /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
+		6BE2D7D72972E80F00CE3866 /* TextRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				6BBD7F21296F44FA005E4F1F /* Data Services */,
+				6BE2D7D62972E7DD00CE3866 /* TextRecognitionService */,
 				6BE1467D296AA185001F65AA /* CameraPicker.swift */,
 			);
 			path = Common;
@@ -148,6 +151,14 @@
 				6BE146772969989A001F65AA /* CDImageViewModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		6BE2D7D62972E7DD00CE3866 /* TextRecognitionService */ = {
+			isa = PBXGroup;
+			children = (
+				6BE2D7D72972E80F00CE3866 /* TextRecognitionService.swift */,
+			);
+			path = TextRecognitionService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +241,7 @@
 				6B64E1332971E7790024A9CB /* MainViewListItemView.swift in Sources */,
 				6BE1467C2969A312001F65AA /* Strings.swift in Sources */,
 				6BE14675296990D5001F65AA /* MainViewModel.swift in Sources */,
+				6BE2D7D82972E80F00CE3866 /* TextRecognitionService.swift in Sources */,
 				6BBD7F1E296F3793005E4F1F /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
