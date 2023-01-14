@@ -18,7 +18,7 @@ struct MainView: View {
                         NavigationLink(
                             destination: ImageDetailsView(image: item),
                             label: {
-                                listItemView(item: item)
+                                MainViewListItemView(item: item)
                             }
                         )
                     }
@@ -57,30 +57,10 @@ struct MainView: View {
             )
         }
     }
-
-    @ViewBuilder
-    private func listItemView(item: CDImageViewModel) -> some View {
-        HStack(alignment: .center, spacing: 16) {
-            Image(uiImage: item.image)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 50, height: 50)
-                .border(.gray, width: 1)
-
-            VStack(alignment: .leading, spacing: 4) {
-                Text(item.name)
-                    .fontWeight(.bold)
-                Text(item.text.isEmpty ? Strings.MainView.noRecognisedText : item.text)
-                    .fontWeight(.light)
-            }
-
-            Spacer()
-        }
-    }
 }
 
 struct MainView_Previews: PreviewProvider {
-    @State private static var viewModel = MainViewModel(dataService: DataService())
+    @State private static var viewModel = MainViewModel(dataService: DataService.preview)
     static var previews: some View {
         MainView()
             .environmentObject(viewModel)

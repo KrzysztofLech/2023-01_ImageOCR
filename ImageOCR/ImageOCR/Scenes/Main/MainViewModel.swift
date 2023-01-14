@@ -20,7 +20,7 @@ class MainViewModel: ObservableObject {
     // MARK: - Data methods -
 
     private func createNewImage(with data: Data) {
-        guard let image = dataService?.createImage(name: "No title", imageData: data) else { return }
+        guard let image = dataService?.createImage(name: "No title", imageData: data, text: nil) else { return }
         let imageViewModel = CDImageViewModel(cdImage: image)
         images.append(imageViewModel)
     }

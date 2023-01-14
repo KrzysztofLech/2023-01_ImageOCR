@@ -46,6 +46,10 @@ struct ImageDetailsView: View {
                     Text(item.text)
                         .font(.system(size: 18, weight: .regular))
                         .lineLimit(0)
+                        .multilineTextAlignment(.leading)
+                        .padding(8)
+                        .border(Color.gray, width: 1)
+
                 }
             }.padding(.horizontal, 32)
 
@@ -58,10 +62,10 @@ struct ImageDetailsView: View {
     }
 }
 
-//struct ImageDetailsView_Previews: PreviewProvider {
-//    @State private static var viewModel = MainViewModel(dataService: DataService())
-//    static var previews: some View {
-//        ImageDetailsView()
-//            .environmentObject(viewModel)
-//    }
-//}
+struct ImageDetailsView_Previews: PreviewProvider {
+    @State private static var viewModel = MainViewModel(dataService: DataService.preview)
+    static var previews: some View {
+        ImageDetailsView(image: DataService.previewItem)
+            .environmentObject(viewModel)
+    }
+}

@@ -14,8 +14,14 @@ final class DataService {
     private let coreDataModelName = "ImagesDataModel"
     private let persistentContainer: NSPersistentContainer
 
-    init() {
+    init(inMemory: Bool = false) {
         persistentContainer = NSPersistentContainer(name: coreDataModelName)
+
+        // Use memory as a storage
+        if inMemory {
+            persistentContainer.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+        }
+
         persistentContainer.loadPersistentStores { _, error in
             if let error {
                 print("Unable to initialize CoreData! Error: \(error.localizedDescription)")
