@@ -18,9 +18,15 @@ struct MainViewListItemView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.name)
                     .fontWeight(.bold)
-                Text(item.text.isEmpty ? Strings.MainView.noRecognisedText : item.text)
-                    .fontWeight(.light)
-                    .lineLimit(1)
+
+                Text(Strings.MainView.ocrIconTitle)
+                    .font(.system(size: 8, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(4)
+                    .background {
+                        RoundedRectangle(cornerRadius: 4)
+                            .foregroundColor(item.text.isEmpty ? .gray.opacity(0.7) : .green)
+                    }
             }
 
             Spacer()

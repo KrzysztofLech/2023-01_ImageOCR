@@ -8,7 +8,7 @@ enum Strings {
         static let title = "Images"
         static let noImagesText = "Add first image"
         static let noImageNameText = "No title"
-        static let noRecognisedText = "No recognised text"
+        static let ocrIconTitle = "TEXT"
     }
 
     enum DetailsView {

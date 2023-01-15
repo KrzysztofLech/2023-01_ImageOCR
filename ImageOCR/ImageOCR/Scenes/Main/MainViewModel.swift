@@ -99,7 +99,8 @@ class MainViewModel: ObservableObject {
                 self?.isRecognising = false
 
                 if let recognisedText, !recognisedText.isEmpty {
-                    print("Recognised text:", recognisedText)
+                    print("Recognised text:")
+                    print(recognisedText)
                     self?.saveRecognisedText(recognisedText, itemId: id)
                 } else {
                     print("No recognised text!")
