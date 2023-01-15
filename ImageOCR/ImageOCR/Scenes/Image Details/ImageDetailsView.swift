@@ -16,35 +16,37 @@ struct ImageDetailsView: View {
     }
 
     var body: some View {
-        VStack(alignment: .center, spacing: 16) {
-            // Image
-            Image(uiImage: item.image)
-                .resizable()
-                .scaledToFit()
-                .padding(.horizontal, 64)
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .center, spacing: 16) {
+                // Image
+                Image(uiImage: item.image)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.horizontal, 64)
 
-            Group {
-                // Image name
-                TextField("", text: $name)
-                    .font(.system(size: 28, weight: .thin))
-                    .multilineTextAlignment(.center)
-                    .focused($isTextFieldFocused)
+                Group {
+                    // Image name
+                    TextField("", text: $name)
+                        .font(.system(size: 28, weight: .thin))
+                        .multilineTextAlignment(.center)
+                        .focused($isTextFieldFocused)
 
-                if item.text.isEmpty {
-                    // Recognise button
-                    contentWithNoRecognisedText
-                } else {
-                    // Recognised text and reset button
-                    contentWithRecognisedText
+                    if item.text.isEmpty {
+                        // Recognise button
+                        contentWithNoRecognisedText
+                    } else {
+                        // Recognised text and reset button
+                        contentWithRecognisedText
+                    }
                 }
-            }
-            .padding(.horizontal, 32)
+                .padding(.horizontal, 32)
 
-            Spacer()
-        }
-        .onChange(of: isTextFieldFocused) { isFocused in
-            guard !isFocused else { return }
-            viewModel.saveNewName(name, itemId: item.id)
+                Spacer()
+            }
+            .onChange(of: isTextFieldFocused) { isFocused in
+                guard !isFocused else { return }
+                viewModel.saveNewName(name, itemId: item.id)
+            }
         }
     }
 
