@@ -5,12 +5,14 @@ import PhotosUI
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-    private var dataService: ImageDataServiceProtocol?
+    private var dataService: ImageDataServiceProtocol
+    private let textRecognitionService: TextRecognitionServiceProtocol?
 
-    init(dataService: ImageDataServiceProtocol?) {
+    init(dataService: ImageDataServiceProtocol, textRecognitionService: TextRecognitionServiceProtocol?) {
         self.dataService = dataService
+        self.textRecognitionService = textRecognitionService
 
-        guard let images = dataService?.images else { return }
+        let images = dataService.images
         self.images = images.map { CDImageViewModel(cdImage: $0) }
     }
 
@@ -20,7 +22,7 @@ class MainViewModel: ObservableObject {
     // MARK: - Data methods -
 
     private func createNewImage(with data: Data) {
-        guard let image = dataService?.createImage(name: "No title", imageData: data, text: nil) else { return }
+        let image = dataService.createImage(name: "No title", imageData: data, text: nil)
         let imageViewModel = CDImageViewModel(cdImage: image)
         images.append(imageViewModel)
     }
@@ -29,25 +31,25 @@ class MainViewModel: ObservableObject {
         images.first(where: { $0.id == itemId })?.name = name
 
         objectWillChange.send()
-        dataService?.saveChanges()
+        dataService.saveChanges()
     }
 
     private func saveRecognisedText(_ text: String, itemId: String) {
         images.first(where: { $0.id == itemId })?.text = text
 
         objectWillChange.send()
-        dataService?.saveChanges()
+        dataService.saveChanges()
     }
 
     func delete(_ item: CDImageViewModel) {
-        dataService?.deleteImage(item.cdImage)
+        dataService.deleteImage(item.cdImage)
         images.removeAll(where: { $0.id == item.id })
     }
 
     func removeRecognisedText(_ item: CDImageViewModel) {
         item.text = ""
         objectWillChange.send()
-        dataService?.saveChanges()
+        dataService.saveChanges()
     }
 
     // MARK: - Photos Picker methods -
@@ -94,7 +96,7 @@ class MainViewModel: ObservableObject {
 
         guard let image = images.first(where: { $0.id == id })?.image else { return }
 
-        TextRecognitionService.recogniseTextFromImage(image) { [weak self] recognisedText in
+        textRecognitionService?.recogniseTextFromImage(image) { [weak self] recognisedText in
             DispatchQueue.main.async {
                 self?.isRecognising = false
 

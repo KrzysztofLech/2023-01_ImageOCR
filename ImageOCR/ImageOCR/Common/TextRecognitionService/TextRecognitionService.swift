@@ -4,8 +4,12 @@
 import UIKit
 import Vision
 
-class TextRecognitionService {
-    static func recogniseTextFromImage(_ image: UIImage, completion: @escaping (String?) -> Void) {
+protocol TextRecognitionServiceProtocol {
+    func recogniseTextFromImage(_ image: UIImage, completion: @escaping (String?) -> Void)
+}
+
+class TextRecognitionService: TextRecognitionServiceProtocol {
+    func recogniseTextFromImage(_ image: UIImage, completion: @escaping (String?) -> Void) {
         guard let cgImage = image.cgImage else {
             completion(nil)
             return

@@ -110,7 +110,10 @@ struct ImageDetailsView: View {
 }
 
 struct ImageDetailsView_Previews: PreviewProvider {
-    @State private static var viewModel = MainViewModel(dataService: DataService.preview)
+    @State private static var viewModel = MainViewModel(
+        dataService: DataService.preview,
+        textRecognitionService: nil
+    )
     static var previews: some View {
         ImageDetailsView(image: DataService.previewItem)
             .environmentObject(viewModel)
