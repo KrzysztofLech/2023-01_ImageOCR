@@ -24,7 +24,7 @@ final class DataService {
 
         persistentContainer.loadPersistentStores { _, error in
             if let error {
-                print("Unable to initialize CoreData! Error: \(error.localizedDescription)")
+                Logger.log(error: "Unable to initialize CoreData! Error: \(error.localizedDescription)")
             }
         }
     }
@@ -40,9 +40,9 @@ extension DataService: DataServiceProtocol {
 
         do {
             try context.save()
-            print("CoreDataService: Context saved!")
+            Logger.log(okText: "CoreDataService: Context saved!")
         } catch {
-            print("Could not save! Error: \(error)")
+            Logger.log(error: "CoreDataService could not save! Error: \(error)")
         }
     }
 
@@ -55,7 +55,7 @@ extension DataService: DataServiceProtocol {
             return try context.fetch(request)
         }
         catch {
-            print(error.localizedDescription)
+            Logger.log(error: "CoreDataService error: \(error.localizedDescription)")
             return []
         }
     }
@@ -66,7 +66,7 @@ extension DataService: DataServiceProtocol {
         do {
             try context.save()
         } catch {
-            print(error.localizedDescription)
+            Logger.log(error: "CoreDataService error: \(error.localizedDescription)")
         }
     }
 }

@@ -16,7 +16,7 @@ extension DataService: ImageDataServiceProtocol {
     var images: [CDImage] {
         let sortDescriptor = NSSortDescriptor(key: "createdAt", ascending: true)
         let images: [CDImage] = fetch(sortDescriptors: [sortDescriptor])
-        print("CoreDataService: All images:", images.count)
+        Logger.log(info: "CoreDataService: All images: \(images.count)")
         return images
     }
 
@@ -29,19 +29,19 @@ extension DataService: ImageDataServiceProtocol {
         image.createdAt = Date()
 
         saveContext()
-        print("CoreDataService: Image added!")
+        Logger.log(okText: "CoreDataService: Image added!")
 
         return image
     }
 
     func deleteImage(_ image: CDImage) {
         delete(image)
-        print("CoreDataService: Image deleted!")
+        Logger.log(okText: "CoreDataService: Image deleted!")
     }
 
     func deleteAllImages() {
         images.forEach { delete($0) }
-        print("CoreDataService: All images deleted!")
+        Logger.log(okText: "CoreDataService: All images deleted!")
     }
 
     func saveChanges() {

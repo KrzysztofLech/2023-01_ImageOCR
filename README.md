@@ -43,3 +43,6 @@ Moreover the user can:
 
 All changes made on this screen are reflected on the Main screen.
 
+## Implementation info:
+* images are stored in a local data base via CoreData as a *Binary Data* type with the `Allows External Storage` option selected (to improve app performance)
+* access to Photo Album could have been done by `UIImagePickerController` just like accessing Phone Camera, however this was intentionally implemented using the new SwiftUI component: `PhotosPicker`

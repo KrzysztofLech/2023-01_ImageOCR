@@ -72,7 +72,7 @@ class MainViewModel: ObservableObject {
                 }
             }
         } catch {
-            print(error.localizedDescription)
+            Logger.log(error: error.localizedDescription)
         }
     }
 
@@ -101,11 +101,10 @@ class MainViewModel: ObservableObject {
                 self?.isRecognising = false
 
                 if let recognisedText, !recognisedText.isEmpty {
-                    print("Recognised text:")
-                    print(recognisedText)
+                    Logger.log(info: "Recognised text:\n\(recognisedText)")
                     self?.saveRecognisedText(recognisedText, itemId: id)
                 } else {
-                    print("No recognised text!")
+                    Logger.log(error: "No recognised text!")
                 }
             }
         }

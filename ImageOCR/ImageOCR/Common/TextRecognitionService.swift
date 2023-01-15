@@ -8,7 +8,7 @@ protocol TextRecognitionServiceProtocol {
     func recogniseTextFromImage(_ image: UIImage, completion: @escaping (String?) -> Void)
 }
 
-class TextRecognitionService: TextRecognitionServiceProtocol {
+struct TextRecognitionService: TextRecognitionServiceProtocol {
     func recogniseTextFromImage(_ image: UIImage, completion: @escaping (String?) -> Void) {
         guard let cgImage = image.cgImage else {
             completion(nil)
@@ -19,7 +19,7 @@ class TextRecognitionService: TextRecognitionServiceProtocol {
         queue.async {
             let recognizeTextRequest = VNRecognizeTextRequest { request, error in
                 if let error {
-                    print("Recognition error:", error.localizedDescription)
+                    Logger.log(error: "Recognition error: \(error.localizedDescription)")
                     completion(nil)
                     return
                 }
@@ -49,7 +49,7 @@ class TextRecognitionService: TextRecognitionServiceProtocol {
                 let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
                 try requestHandler.perform([recognizeTextRequest])
             } catch {
-                print("Recognition error:", error.localizedDescription)
+                Logger.log(error: "Recognition error: \(error.localizedDescription)")
                 completion(nil)
             }
         }
